@@ -9,6 +9,10 @@ import lz4.frame, lz4.block
 import os
 import copy
 
+# The full path to the Firefox folders is:
+# C:\Users\USERNAME\AppData\Roaming\Mozilla\Firefox\Profiles
+# Each profile gets its own folder and from there, the bookmark files are saved
+#  in "bookmarksbackups".
 def bookmarkbackups():
     USERS=r"C:\Users"
     users=os.listdir(USERS)
@@ -27,24 +31,17 @@ def bookmarkbackups():
 def readfile(fn):
     with open(fn,'rb') as fh:
         return fh.read()
+# The backup files are lz4 compressed and start with "mozLz40"
 def readbookmarkfile(fn):            
     file_content=readfile(fn)
-    #print(len(file_content))
     if file_content[0:8]==bytes("mozLz40\x00".encode('ascii')):
         file_content = lz4.block.decompress(file_content[8:])
-    #y = ac(file_content)
-    #print(decompressed)
-    return json.loads(file_content)
-def readbookmarkfilejson(fn):
-    file_content=readfile(fn)
     return json.loads(file_content)
 def count_links(j,count=0):
-    #print(type(j))
     if type(j)==dict:
         if "children" in j:
             for e in j["children"]:
                 count+=count_links(e)
-            #print("subcount=",count)
             return count
         else:#if no children then it's a link
             return 1
@@ -80,6 +77,10 @@ def printkeys(j):
 def write_pretty(j,fn):
     with open(fn, "w") as write_file:
         json.dump(j, write_file, indent=4)
+# I had a bug where if every item didn't have its own unique id it would fail
+# to load in Firefox. I created this dictionary making function to discover
+# duplicate ids. In the end I just change all the ids in the big data structure
+# rather than trying to keep track during the process of merging.
 def id_dict(n,d):
     id = n["id"]
     if n["type"]=="text/x-moz-place":
@@ -101,8 +102,6 @@ def return_id_dict(n):
     d={}
     id_dict(n,d)
     return d
-
-
 def fix_all_ids(n,id=100):
     n["id"]=id
     id+=1
@@ -171,11 +170,15 @@ def merge_link_folder_all(folder,rv,idd):
             merge_link_folder_all(sub,rv,idd)
         else:
             assert False
+# mut is a name for the template structure that has a "menu" "unfiled" and
+# "toolbar" folder. I actually later include "mobile" as well.
+# This stucture is the empty structure that I merge all the links into since I
+# don't want links to fall into those orignal folders and instead to fall into
+# alternate ones that are under the root menu folder
 def build_mut():
-    mut=readbookmarkfile("empty mut.json")
-    mut["children"][0]["children"][0]["children"]=[]
-    mut["children"][0]["children"][1]["children"]=[]
-    mut["children"][0]["children"][2]["children"]=[]
+    mut=readbookmarkfile("empty_pretty.json")
+    for each in mut["children"][0]["children"]:
+        each["children"]=[]
     return mut["children"][0]["children"]
 def process_alts(first=None):
     if first==None:
@@ -195,10 +198,10 @@ def process_alts(first=None):
     return rv
 def create_merged_json(first=None):
     v=process_alts(first)
-    mut=readbookmarkfile("empty mut.json")
-    mut["children"][0]["children"]=v
-    print("count =",count_links(mut))
-    fix_all_ids(mut)
-    write_pretty(mut,"merged.json")
-    return mut
-nmut=create_merged_json(input())
+    merged=readbookmarkfile("empty_pretty.json")
+    merged["children"][0]["children"]=v
+    print("count =",count_links(merged))
+    fix_all_ids(merged)
+    write_pretty(merged,"merged.json")
+    return merged
+merged=create_merged_json(input("Primary bookmark file: "))
