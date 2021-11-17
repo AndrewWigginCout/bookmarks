@@ -1,0 +1,99 @@
+{
+    "guid": "root________",
+    "title": "",
+    "index": 0,
+    "dateAdded": 1633968238397000,
+    "lastModified": 1633982777863000,
+    "id": 1,
+    "typeCode": 2,
+    "type": "text/x-moz-place-container",
+    "root": "placesRoot",
+    "children": [
+        {
+            "guid": "menu________",
+            "title": "menu",
+            "index": 0,
+            "dateAdded": 1633968238397000,
+            "lastModified": 1633982777863000,
+            "id": 2,
+            "typeCode": 2,
+            "type": "text/x-moz-place-container",
+            "root": "bookmarksMenuFolder",
+            "children": [
+                {
+                    "guid": "EfGPbpWzxb0K",
+                    "title": "unfiled",
+                    "index": 0,
+                    "dateAdded": 1633982777829000,
+                    "lastModified": 1633982781566000,
+                    "id": 15,
+                    "typeCode": 2,
+                    "type": "text/x-moz-place-container"
+                },
+                {
+                    "guid": "nMYymYbA9KjD",
+                    "title": "toolbar",
+                    "index": 1,
+                    "dateAdded": 1633982307926000,
+                    "lastModified": 1633982310884000,
+                    "id": 14,
+                    "typeCode": 2,
+                    "type": "text/x-moz-place-container"
+                },
+                {
+                    "guid": "9MopZ2p-lpBU",
+                    "title": "menu",
+                    "index": 2,
+                    "dateAdded": 1633982296815000,
+                    "lastModified": 1633982301826000,
+                    "id": 13,
+                    "typeCode": 2,
+                    "type": "text/x-moz-place-container"
+                },
+				{
+                    "guid": "PpINJdBHWSBw",
+                    "title": "mobile",
+                    "index": 3,
+                    "dateAdded": 1633982296815000,
+                    "lastModified": 1633982301826000,
+                    "id": 16,
+                    "typeCode": 2,
+                    "type": "text/x-moz-place-container"
+                }
+            ]
+        },
+        {
+            "guid": "toolbar_____",
+            "title": "toolbar",
+            "index": 1,
+            "dateAdded": 1633968238397000,
+            "lastModified": 1633968238758000,
+            "id": 3,
+            "typeCode": 2,
+            "type": "text/x-moz-place-container",
+            "root": "toolbarFolder"
+        },
+        {
+            "guid": "unfiled_____",
+            "title": "unfiled",
+            "index": 3,
+            "dateAdded": 1633968238397000,
+            "lastModified": 1633978990653000,
+            "id": 5,
+            "typeCode": 2,
+            "type": "text/x-moz-place-container",
+            "root": "unfiledBookmarksFolder"
+        },
+        {
+            "guid": "mobile______",
+            "title": "mobile",
+            "index": 4,
+            "dateAdded": 1633968238412000,
+            "lastModified": 1633978990653000,
+            "id": 6,
+            "typeCode": 2,
+            "type": "text/x-moz-place-container",
+            "root": "mobileFolder"
+        }
+    ]
+}
