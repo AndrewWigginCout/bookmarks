@@ -1,0 +1,9 @@
+This script serves the purpose to consolidate and archive all bookmarks across multiple Firefox profiles. I personally use different profiles and I found the whole UI to manage links frustrating. There's no Firefox app functionality to move links across profiles. The UI to manually sort the links into folders is clunky, and half the time outcome and the expected outcome are not the same for simple operations such as drag and drop. Perhaps most frustrating of all there's no merge functionality. If you have multiple bookmark backups with multiple organized folders, there's no native way to open up and manipulate only the data that you want. There's no way to simply amalgamate a separate collection of link into your existing link structure.
+
+Also I wanted to "flatten" the heirarchy, I wanted a list of folders with no subfolders.
+ 
+To the end of solving that problem I wrote this script. Also, I was curious to explore the format that Firefox uses. Firefox exports the bookmarks data scructure as a json file. It's nested dictionaries and lists, so it was easy to create an algorithm to move the dictionaries and links in a flat list.
+  
+This script assumes a Windows OS. This function parses all the bookmark backup files in all profiles, and consolidates them into a single file.
+
+In the future I might want to expand upon this theme, and port this code to JS to make a browser extension. Or I might want to take a stab at fixing the actual problem, which is the Mozilla Firefox code base. Getting my commit in the Firefox repo would be quite the accomplishment indeed.
